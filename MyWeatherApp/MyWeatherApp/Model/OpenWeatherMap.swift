@@ -6,22 +6,32 @@
 //
 
 import Foundation
-// EQUIVALENT au #define en Swift
-let APIKEY = "3f05cfb0aa99f7ec370e36e8be48404a"
 
 
 struct OpenWeatherMap{
-    var city : String
-    var apiKey : String
-    var url : String
     
+    //MARK: - Properties
+    let city : String
+    let apiKey : String
+    let url : String
+    
+    //MARK: - init() par defaut Paris
     init()
     {
-        city = "Paris"
-        apiKey = APIKEY
-        url = "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)&units=imperial"
+        city = "paris"
+        apiKey = API_KEY
+        url = "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)"
     }
 
+    //MARK: - init("...of other Country/City)
+    init(_city : String)
+    {
+        city = _city
+        apiKey = API_KEY
+        url = "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)"
+    }
+    
+    //MARK: - getURL()
     func getURL() -> String {
         return url
     }
