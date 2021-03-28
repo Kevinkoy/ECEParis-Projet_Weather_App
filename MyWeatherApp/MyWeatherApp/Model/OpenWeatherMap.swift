@@ -12,30 +12,34 @@ struct OpenWeatherMap{
     
     //MARK: - Properties
     let city : String
+    let count : Int
     let apiKey : String
     let url : String
     
-    //MARK: - init() par defaut Paris
-    init()
-    {
-        city = "paris"
-        apiKey = API_KEY
-        url = "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)"
-    }
-
-    //MARK: - init("...of other Country/City)
-    init(_city : String)
+    //MARK: init
+    init(_city: String, _cnt: Int, forecast: Bool)
     {
         city = _city
+        count = _cnt
         apiKey = API_KEY
-        url = "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)"
+        if(forecast==true)
+        {
+        //5 Jours
+        url = "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&cnt=\(count)appid=\(apiKey)"
+        }
+        else
+        {
+        url = "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)"
+        }
     }
+
     
     //MARK: - getURL()
     func getURL() -> String {
         return url
     }
 
+    
 
 }
 
